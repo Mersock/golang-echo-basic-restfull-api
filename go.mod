@@ -1,4 +1,4 @@
-module github.com/Mersock/golang-echo-resful-api
+module github.com/Mersock/golang-echo-basic-restfull-api
 
 go 1.15
 
@@ -7,6 +7,7 @@ require (
 	github.com/codegangsta/envy v0.0.0-20141216192214-4b78388c8ce4 // indirect
 	github.com/codegangsta/gin v0.0.0-20171026143024-cafe2ce98974 // indirect
 	github.com/go-playground/universal-translator v0.17.0 // indirect
+	github.com/labstack/echo v3.3.10+incompatible
 	github.com/labstack/echo/v4 v4.1.17
 	github.com/leodido/go-urn v1.2.1 // indirect
 	github.com/mattn/go-colorable v0.1.8 // indirect
