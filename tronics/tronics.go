@@ -18,12 +18,20 @@ func init() {
 	}
 }
 
+func serverMsg(next echo.HandlerFunc) echo.HandlerFunc {
+	return func(c echo.Context) error {
+		fmt.Println("inside middleware")
+		return next(c)
+	}
+}
+
 func Start() {
 	port := os.Getenv("APP_PORT")
 	if port == "" {
 		port = "8080"
 	}
-	e.GET("/", initProduct)
+	e.Use(serverMsg)
+	e.GET("/", initProduct, serverMsg)
 	e.GET("/product", getProduct)
 	e.POST("/product", createProduct)
 	e.GET("/product/:id", getProductByID)
