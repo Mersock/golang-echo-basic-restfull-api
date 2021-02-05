@@ -4,7 +4,7 @@ import (
 	"net/http"
 	"strconv"
 
-	"github.com/labstack/echo"
+	"github.com/labstack/echo/v4"
 	"gopkg.in/go-playground/validator.v9"
 )
 
@@ -24,22 +24,7 @@ func initProduct(c echo.Context) error {
 }
 
 func getProduct(c echo.Context) error {
-	type body struct {
-		Name string `json:"product_name" validate:"required,min=4"`
-	}
-	var reqBody body
-	e.Validator = &ProductValidator{validator: v}
-	if err := c.Bind(&reqBody); err != nil {
-		return err
-	}
-	if err := c.Validate(reqBody); err != nil {
-		return err
-	}
-	product := map[int]string{
-		len(products) + 1: reqBody.Name,
-	}
-	products = append(products, product)
-	return c.JSON(http.StatusOK, product)
+	return c.JSON(http.StatusOK, products)
 }
 
 func createProduct(c echo.Context) error {
