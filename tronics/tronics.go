@@ -6,6 +6,7 @@ import (
 
 	"github.com/ilyakaznacheev/cleanenv"
 	"github.com/labstack/echo/v4"
+	"github.com/labstack/echo/v4/middleware"
 )
 
 var e = echo.New()
@@ -31,9 +32,10 @@ func Start() {
 		port = "8080"
 	}
 	e.Use(serverMsg)
+	e.Pre(middleware.RemoveTrailingSlash())
 	e.GET("/", initProduct, serverMsg)
 	e.GET("/product", getProduct)
-	e.POST("/product", createProduct)
+	e.POST("/product", createProduct, middleware.BodyLimit("1k"))
 	e.GET("/product/:id", getProductByID)
 	e.PUT("/product/:id", updateProduct)
 	e.DELETE("/product/:id", destroyProduct)
