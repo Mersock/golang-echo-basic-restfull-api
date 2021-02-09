@@ -40,5 +40,5 @@ func Start() {
 	e.PUT("/product/:id", updateProduct)
 	e.DELETE("/product/:id", destroyProduct)
 	e.Logger.Print(fmt.Sprintf("Listen on port %s", cfg.Port))
-	e.Logger.Fatal(e.Start(fmt.Sprintf("localhost:%s", cfg.Port)))
+	e.Logger.Fatal(e.Start(fmt.Sprintf(":%s", cfg.Port)))
 }
